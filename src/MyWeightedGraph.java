@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyWeightedGraph<T> {
+public class MyWeightedGraph<T> implements IGraph{
     private final boolean undirected;
     private HashSet<Vertex<T>> map = new HashSet<>();
 
@@ -59,16 +59,16 @@ public class MyWeightedGraph<T> {
         return map.get(source).contains(new Edge<>(source, dest));
     }
 
-    public Iterable<Vertex> adjacencyList(Vertex v) {
+    public Iterable<T> adjacencyList(T v) {
         if (!hasVertex(v)) return null;
-        List<Vertex> vertices = new LinkedList<>();
-        for (Edge<Vertex> e : map.get(v)) {
+        List<T> vertices = new LinkedList<>();
+        for (Edge<T> e : map.get(v)) {
             vertices.add(e.getDest());
         }
         return vertices;
     }
 
-    public Iterable<Edge<Vertex>> getEdges(Vertex v) {
+    public Iterable<Edge<T>> getEdges(T v) {
         if (!hasVertex(v)) return null;
         return map.get(v);
     }
